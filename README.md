@@ -20,3 +20,4 @@ A Python project that extracts key invoice and receipt data from PDF files, vali
 - matplotlib
 - Streamlit
 - openpyxl
+- SQLite
