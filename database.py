@@ -23,7 +23,8 @@ def init_db() -> None:
                 amount REAL,
                 order_id TEXT,
                 status TEXT NOT NULL,
-                errors TEXT
+                errors TEXT,
+                UNIQUE(invoice_number, date, amount)
             )
             """
         )
@@ -31,11 +32,11 @@ def init_db() -> None:
 
 
 def save_results(results: list[dict[str, Any]]) -> None:
-    """Save extracted invoice results to SQLite."""
+    """Save extracted invoice results to SQLite without inserting duplicates."""
     with get_connection() as conn:
         conn.executemany(
             """
-            INSERT INTO invoices (
+            INSERT OR IGNORE INTO invoices (
                 file_name,
                 invoice_number,
                 date,
