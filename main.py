@@ -5,6 +5,7 @@ import pandas as pd
 from dashboard import generate_dashboard
 from exporter import export_to_csv, export_to_excel
 from processor import process_folder
+from database import init_db, save_results
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -21,6 +22,8 @@ def main() -> None:
         logger.error("Data folder does not exist: %s", DATA_FOLDER)
         return
 
+    init_db()
+
     results = process_folder(DATA_FOLDER)
 
     if not results:
@@ -29,6 +32,7 @@ def main() -> None:
 
     export_to_csv(results, OUTPUT_FILE_CSV)
     export_to_excel(results, OUTPUT_FILE_EXCEL)
+    save_results(results)
 
     df = pd.DataFrame(results)
     summary = {

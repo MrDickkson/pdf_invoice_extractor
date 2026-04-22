@@ -5,4 +5,5 @@ __pycache__/
 output/
 data/
 invoices.db
+invoice_results.db
 .env
