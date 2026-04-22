@@ -10,6 +10,7 @@ A Python project that extracts key invoice and receipt data from PDF files, vali
 - Exports results to CSV and Excel
 - Generates a summary dashboard with status counts and revenue metrics
 - Includes a Streamlit app for interactive viewing
+- - Stores processed invoice results in SQLite
 
 ## Tech Stack
 
